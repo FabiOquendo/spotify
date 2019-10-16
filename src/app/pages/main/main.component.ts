@@ -19,7 +19,10 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     
-    this.userService.getUser().subscribe(
+  }
+
+  search(term: string) {
+    this.userService.getUser(term).subscribe(
       data => {
         console.log(data);
         this.user = data;
@@ -33,5 +36,4 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
 }

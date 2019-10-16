@@ -7,6 +7,7 @@ import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MenubarModule} from 'primeng/menubar';
 import {TabViewModule} from 'primeng/tabview';
+import {PanelModule} from 'primeng/panel';
 
 @NgModule({
   declarations: [MainComponent, SearchComponent, NavbarComponent],
@@ -15,7 +16,8 @@ import {TabViewModule} from 'primeng/tabview';
     PagesRoutingModule,
     CardModule,
     MenubarModule,
-    TabViewModule
+    TabViewModule,
+    PanelModule
   ]
 })
 export class PagesModule { }
