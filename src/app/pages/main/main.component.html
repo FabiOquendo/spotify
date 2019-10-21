@@ -11,9 +11,32 @@
 
 <p-panel *ngIf="playlists" class="ui-g-12" header="Playlists">
     <div class="ui-g">
-    <p-card class="ui-g-12 ui-md-6 ui-lg-4" *ngFor="let playlist of playlists" header="{{playlist.name}}" subheader="{{playlist.owner.display_name}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+    <p-card class="ui-g-12 ui-md-6 ui-lg-4" (click)="getTracks(playlist)" *ngFor="let playlist of playlists" header="{{playlist.name}}" subheader="{{playlist.owner.display_name}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
         <p-header>
             <img src="Card" src="{{playlist.images[0].url}}">
         </p-header>
     </p-card></div>
 </p-panel>
+
+<p-dialog class="dialog" header="{{playlistsName}}" [(visible)]="display" [style]="{width: '80%'}">
+    <p-table [value]="tracks">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:10%">Photo</th>
+                <th style="width:20%">Name</th>
+                <th style="width:20%">Artist</th>
+                <th style="width:50%">Play</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-songtrack >
+            <tr>
+                <td><img src="{{songtrack.track.album.images[0].url}}" style="width:100%"></td>
+                <td>{{songtrack.track.name}}</td>
+                <td>{{songtrack.track.artists[0].name}}</td>
+                <td>
+                    <iframe [src]="songtrack.track.uri | domseguro" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>

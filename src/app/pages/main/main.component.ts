@@ -11,28 +11,39 @@ export class MainComponent implements OnInit {
 
   user: any = { 'display_name': 'Name', 'followers': {'total': 0} };
   playlists: any;
+  playlistsName: string;
+  tracks: any;
+  display: boolean = false;
 
   constructor(
     private userService: UserService,
     private playlistService: PlaylistService
-  ) { }
+  ) {  }
 
   ngOnInit() {
-    
   }
 
   search(term: string) {
     this.userService.getUser(term).subscribe(
       data => {
-        console.log(data);
         this.user = data;
 
         this.playlistService.getPlaylistsUser(this.user.id).subscribe(
           list => {
-            console.log(list.items);
             this.playlists = list.items;
           }
         );
+      }
+    );
+  }
+
+  getTracks(playlist: any) {
+    this.playlistsName = playlist.name;
+    this.playlistService.getPlaylistsTracks(playlist.id).subscribe(
+      data => {
+        this.tracks = data.items;
+        console.log(this.tracks);
+        this.display = true;
       }
     );
   }

@@ -1,0 +1,9 @@
+<p-panel header="Login" [style]="{'margin': 'auto', 'width': '50%','padding': '10px'}">
+    <h4>Username</h4>
+    <input type="text" pInputText style="width:100%" [(ngModel)]="username"/>
+    <h4>Password</h4>
+    <input type="password" pInputText style="width:100%" [(ngModel)]="password"/>
+    <br><br>
+    <button pButton type="button" (click)="login()" label="Login"></button>
+</p-panel>
+<p-toast position="top-center"></p-toast>

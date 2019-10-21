@@ -6,7 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccordionModule } from 'primeng/components/accordion/accordion';  
-import { OrderListModule } from 'primeng/orderlist'; 
+import { OrderListModule } from 'primeng/orderlist';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { OrderListModule } from 'primeng/orderlist';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

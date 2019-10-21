@@ -5,10 +5,16 @@
 
 <p-panel *ngIf="tracks.length" class="ui-g-12" header="Song tracks">
     <div class="ui-g">
-    <p-card class="ui-g-12 ui-md-6 ui-lg-4" *ngFor="let track of tracks" header="{{track.name}}" subheader="{{track.artists[0].name}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+    <p-card class="ui-g-12 ui-md-6 ui-lg-4" (click)="openTrack(track)" *ngFor="let track of tracks" header="{{track.name}}" subheader="{{track.artists[0].name}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
         <p-header>
             <img src="Card" src="{{track.album.images[0].url}}">
         </p-header>
     </p-card></div>
 </p-panel>
+
+<p-dialog class="dialog" header="{{track?.name}}" [(visible)]="display" [style]="{width: '50%'}">
+        
+    <iframe [src]="track?.uri | domseguro" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+</p-dialog>
 

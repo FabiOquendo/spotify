@@ -9,6 +9,8 @@ import { TrackService } from 'src/app/services/track.service';
 export class SearchComponent implements OnInit {
 
   tracks: any[] = [];
+  track: any
+  display: boolean = false;
 
   constructor(private trackService: TrackService) { }
 
@@ -18,9 +20,14 @@ export class SearchComponent implements OnInit {
   search(term: string) {
     this.trackService.getTracks(term).subscribe(
       data => {
-        console.log(data.tracks.items);
         this.tracks = data.tracks.items;
       }
-    )
+    );
+  }
+
+  openTrack(track: any) {
+    console.log(track);
+    this.track = track;
+    this.display = true;
   }
 }
